@@ -1,5 +1,5 @@
 angular.module('angularDob')
-	.factory('_Format', ['Common', '$filter', function(Common, $filter) {
+	.factory('_FormatDob', ['CommonDob', '$filter', function(CommonDob, $filter) {
 
 		var _hasTextSelected = function($target) {
 			var ref;
@@ -141,7 +141,7 @@ angular.module('angularDob')
 
 		var _parseDob = function(value) {
 			if (value != null) {
-				var obj = Common.parseDob(value);
+				var obj = CommonDob.parseDob(value);
 				var dob = new Date(obj.year, obj.month - 1, obj.day);
 				return $filter('date')(dob, 'MM/dd/yyyy');
 			}
@@ -150,7 +150,7 @@ angular.module('angularDob')
 
 		var _getFormattedDob = function(value) {
 			if (value != null) {
-				var obj = Common.parseDob(value);
+				var obj = CommonDob.parseDob(value);
 				var dob = new Date(obj.year, obj.month - 1, obj.day);
 				return $filter('date')(dob, 'MM / dd / yyyy');
 			}
@@ -170,12 +170,12 @@ angular.module('angularDob')
 
 	}])
 
-	.directive('dobFormat', ['$window', '_Format', function($window, _Format) {
+	.directive('dobFormat', ['$window', '_FormatDob', function($window, _FormatDob) {
 		return {
 			restrict: 'A',
 			require: 'ngModel',
 			link: function(scope, elem, attr, ctrl) {
-				_Format(elem, ctrl);
+				_FormatDob(elem, ctrl);
 			}
 		}
 	}]);

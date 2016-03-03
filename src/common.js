@@ -1,5 +1,5 @@
 angular.module('angularDob')
-	.factory('Common', [function() {
+	.factory('CommonDob', [function() {
 		var common = {};
 		// String "mm / dd / yyyy"
 		common['parseDob'] = function(value) {

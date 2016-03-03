@@ -1,12 +1,12 @@
 angular.module('angularDob')
-	.factory('_Validate', ['Common', function(Common) {
+	.factory('_ValidateDob', ['CommonDob', function(CommonDob) {
 
 
 		var validateDob = function(val) {
 			// valid if empty - let ng-required handle empty
 			if (val == null || val.length == 0) return true;
 
-			obj = Common.parseDob(val);
+			obj = CommonDob.parseDob(val);
 
 			day = obj.day;
 			month = obj.month;
@@ -61,7 +61,7 @@ angular.module('angularDob')
 		}
 	}])
 
-	.directive('dobValidate', ['$window', '_Validate', function($window, _Validate) {
+	.directive('dobValidate', ['$window', '_ValidateDob', function($window, _ValidateDob) {
 		return {
 			restrict: 'A',
 			require: 'ngModel',
@@ -70,7 +70,7 @@ angular.module('angularDob')
 				var type = attr.dobValidate;
 
 				var validateFn = function(val) {
-					var valid = _Validate(val, ctrl, scope, attr);
+					var valid = _ValidateDob(val, ctrl, scope, attr);
 					ctrl.$setValidity(type, valid);
 					return valid ? val : undefined;
 				};

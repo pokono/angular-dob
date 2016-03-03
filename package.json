@@ -1,0 +1,32 @@
+{
+  "name": "angular-dob",
+  "description": "Directive for formatting and validating date of birth.",
+  "version": "0.1.0",
+  "homepage": "https://github.com/pokono/angular-dob",
+  "author": {
+    "name": "Ivan Carosati",
+    "url": "https://github.com/pokono"
+  },
+  "main": "lib/angular-dob.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/pokono/angular-dob.git"
+  },
+  "licenses": [
+    {
+      "type": "MIT"
+    }
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "del": "^2.2.0",
+    "fs": "0.0.2",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-load-plugins": "^1.2.0",
+    "gulp-sequence": "^0.4.5",
+    "gulp-strip-debug": "^1.1.0",
+    "gulp-uglify": "^1.5.3",
+    "merge-stream": "^1.0.0"
+  }
+}

@@ -41,6 +41,11 @@ For formatting to work, element must have an associated ng-model -value.
 
 See example-folder.
 
+The variable blah will get filled with an object like this: 
+```js
+    {"day":8,"month":10,"year":1986,"text":"10/08/1986"}
+```
+
 
 ## Contributors
 

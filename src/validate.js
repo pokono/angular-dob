@@ -2,17 +2,21 @@ angular.module('angularDob')
 	.factory('_ValidateDob', ['CommonDob', function(CommonDob) {
 
 
-		var validateDob = function(val) {
+		var validateDob = function(val, attr) {
 			// valid if empty - let ng-required handle empty
 			if (val == null || val.length == 0) return true;
 
-			obj = CommonDob.parseDob(val);
+			var maxDate = attr.hasOwnProperty('dobValidateMaxDate') ? attr.dobValidateMaxDate : null;
+			var minDate = attr.hasOwnProperty('dobValidateMinDate') ? attr.dobValidateMinDate : null;
+			var minimumTime = new Date;
+			var dob;
+			var isValid = true;
+
+			obj = CommonDob.parseDob(val.text);
 
 			day = obj.day;
 			month = obj.month;
 			year = obj.year;
-
-			var currentTime, dob;
 
 			if (!(month && year && day)) {
 				return false;
@@ -36,10 +40,6 @@ angular.module('angularDob')
 
 			dob = new Date(year, month, day);
 
-			console.log(dob.getFullYear() + ' ' + year);
-			console.log(dob.getMonth() + ' ' + month);
-			console.log(dob.getDate() + ' ' + day);
-
 			// Check that there is no overflow.
 			if (dob.getFullYear() != year
 				|| dob.getMonth() != month
@@ -47,17 +47,29 @@ angular.module('angularDob')
 				return false;
 			}
 
-			currentTime = new Date;
 			dob.setMonth(dob.getMonth() - 1);
-			dob.setMonth(dob.getMonth() + 1, 1);
+			//dob.setMonth(dob.getMonth() + 1, 1);
 
-			console.log(dob < currentTime);
+			isValid = dob < minimumTime;
 
-			return dob < currentTime;
+			// Greater than today.
+			if (maxDate && isValid) {
+				var objMaxDate = CommonDob.parseMinDate(maxDate);
+				minimumTime = new Date(objMaxDate.year, objMaxDate.month - 1, objMaxDate.day);
+				isValid = dob < minimumTime;
+			}
+
+			if (minDate && isValid) {
+				var objMinDate = CommonDob.parseMinDate(minDate);
+				minimumTime = new Date(objMinDate.year, objMinDate.month - 1, objMinDate.day);
+				isValid = dob > minimumTime;
+			}
+
+			return isValid;
 		};
 
 		return function(val, ctrl, scope, attr) {
-			return validateDob(val);
+			return validateDob(val, attr);
 		}
 	}])
 

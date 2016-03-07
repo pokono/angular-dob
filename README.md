@@ -25,6 +25,16 @@ Is used for validating fields on the client side. Usage:
 ```
 
 For validation to work, element must have an associated ng-model -value.
+#### Optional Parameters   
+**Max Date** - Maximum date that will be considered valid.
+```html
+    <input type="text" ng-model="blah" dob-validate dob-validate-max-date="yyyy/mm/dd"/>
+```
+
+**Min Date** — Minimum date that will be considered valid.
+```html
+    <input type="text" ng-model="blah" dob-validate dob-validate-min-date="yyyy/mm/dd"/>
+```
 
 ### dobFormat
 

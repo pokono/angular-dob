@@ -12,7 +12,6 @@
 
     <script>
         angular.module('app', ['angularDob']);
-
         MainController = function($scope) {
 
         };
@@ -37,11 +36,11 @@
                 <form name="myForm">
                     <div class="span3">
                         <label>Date of birth:</label>
-                        <input type="text" class="input-block-level" ng-model="number" dob-validate
-                               dob-format placeholder="mm / dd / yyyy"/>
+                        <input type="text" class="input-block-level" ng-model="number" dob-format dob-validate dob-validate-max-date="1986-10-08" dob-validate-min-date="1900-01-01" placeholder="mm / dd / yyyy"/>
                     </div>
-                    <p>DOB -> {{ number }}</p>
                 </form>
+                <br />
+                <div class="span3"><h5>DOB -> {{ number }}</h5></div>
             </div>
         </div>
     </div>

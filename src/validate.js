@@ -12,7 +12,15 @@ angular.module('angularDob')
 			var dob;
 			var isValid = true;
 
-			obj = CommonDob.parseDob(val.text);
+			console.log('#### VALIADATE DOB ####');
+			console.log(val);
+			console.log('#######################');
+
+			if (typeof val === 'object') { // Newer angular.
+				obj = CommonDob.parseDob(val.text);
+			} else {
+				obj = CommonDob.parseDob(val);
+			}
 
 			day = obj.day;
 			month = obj.month;
@@ -54,13 +62,13 @@ angular.module('angularDob')
 
 			// Greater than today.
 			if (maxDate && isValid) {
-				var objMaxDate = CommonDob.parseMinDate(maxDate);
+				var objMaxDate = CommonDob.parseDate(maxDate);
 				minimumTime = new Date(objMaxDate.year, objMaxDate.month - 1, objMaxDate.day);
 				isValid = dob < minimumTime;
 			}
 
 			if (minDate && isValid) {
-				var objMinDate = CommonDob.parseMinDate(minDate);
+				var objMinDate = CommonDob.parseDate(minDate);
 				minimumTime = new Date(objMinDate.year, objMinDate.month - 1, objMinDate.day);
 				isValid = dob > minimumTime;
 			}

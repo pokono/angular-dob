@@ -26,7 +26,7 @@ angular.module('angularDob')
 			};
 		};
 
-		common['parseMinDate'] = function(value) {
+		common['parseDate'] = function(value) {
 			// String "yyyy-mm-dd"
 			var day, month, year, _ref;
 

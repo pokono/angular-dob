@@ -4,14 +4,14 @@ An Angular Module that provides directives for *formatting* and *validating* dat
 
 ### Credits
 
-Heavily inspired to Angular Payments. https://github.com/laurihy/angular-payments
+Heavily inspired by Angular Payments. https://github.com/laurihy/angular-payments
 Thank You!
 
 ## Usage
 
-To use Angular DOB, add angularDob as a dependency to your AngularJS module or app.
+To use Angular DOB, add *angularDob* as a dependency to your AngularJS module or app.
 
-The module ships 2 directives, all of which should be added as attributes to elements. 
+The module ships 2 directives, both of which should be added as attributes to elements. 
 
 * dobValidate
 * dobFormat
@@ -21,11 +21,13 @@ The module ships 2 directives, all of which should be added as attributes to ele
 Is used for validating fields on the client side. Usage:
 
 ```html
-	<input type="text" ng-model="blah" dob-validate />
+    <input type="text" ng-model="blah" dob-validate />
 ```
 
-For validation to work, element must have an associated ng-model -value.
-#### Optional Parameters   
+For validation to work, the element must have an associated ng-model -value.
+
+#### Optional Parameters
+   
 **Max Date** - Maximum date that will be considered valid.
 ```html
     <input type="text" ng-model="blah" dob-validate dob-validate-max-date="yyyy/mm/dd"/>
@@ -44,14 +46,14 @@ Is used for formatting fields.
 	<input type="text" ng-model="blah" dob-format />
 ```
 	
-For formatting to work, element must have an associated ng-model -value.
+For formatting to work, the element must have an associated ng-model -value.
 
 
 ## Example
 
 See example-folder.
 
-The variable blah will get filled with an object like this: 
+The variable *blah* will get filled with an object like this: 
 ```js
     {"day":8,"month":10,"year":1986,"text":"10/08/1986"}
 ```
@@ -59,7 +61,7 @@ The variable blah will get filled with an object like this:
 
 ## Contributors
 
-Contributions or feature requests are welcome. Guidelines will be here soon ;)
+Contributions or feature requests are welcome. Guidelines will be here soon. ;)
 Thank you!
 
 

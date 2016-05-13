@@ -36,15 +36,22 @@
 
                 <div class="span4">
                     <h3>Shut up and take my birthday!</h3>
+                    <p>Max Date: 1986-10-08. Min Date: 1900-01-01</p>
                 </div>
                 <form name="myForm">
                     <div class="span3">
                         <label>Date of birth:</label>
-                        <input type="text" class="input-block-level" ng-model="number" dob-validate-max-date="1986-10-08" dob-validate-min-date="1900-01-01" dob-format dob-validate placeholder="mm / dd / yyyy"/>
+                        <input type="text" 
+                                class="input-block-level" 
+                                ng-model="number" 
+                                dob-validate-max-date="1986-10-08" 
+                                dob-validate-min-date="1900-01-01" 
+                                dob-format dob-validate 
+                                placeholder="mm / dd / yyyy"/>
                     </div>
                 </form>
                 <br />
-                <div class="span3"><h5>DOB -> {{ number }}</h5></div>
+                <div class="span3"><h5>DOB -> {{ number | json }}</h5></div>
             </div>
         </div>
     </div>

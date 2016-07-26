@@ -1,9 +1,8 @@
 angular.module('angularDob')
 	.factory('_ValidateDob', ['CommonDob', function(CommonDob) {
 
-
 		var validateDob = function(val, attr) {
-			// valid if empty - let ng-required handle empty
+			// valid if empty - let ng-required handle empty.
 			if (val == null || val.length == 0) return true;
 
 			var maxDate = attr.hasOwnProperty('dobValidateMaxDate') ? attr.dobValidateMaxDate : null;
@@ -17,7 +16,7 @@ angular.module('angularDob')
 			console.log('#######################');
 
 			if (typeof val === 'object') { // Newer angular.
-				obj = CommonDob.parseDob(val.text);
+				obj = val;
 			} else {
 				obj = CommonDob.parseDob(val);
 			}
@@ -42,9 +41,10 @@ angular.module('angularDob')
 				return false;
 			}
 
-			if (!(month <= 12)) {
-				return false;
-			}
+			// // Additional validation.
+			// if (!(month <= 12) || !(month > 0) || !(day > 0)) {
+			// 	return false;
+			// }
 
 			dob = new Date(year, month - 1, day);
 

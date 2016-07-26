@@ -21,7 +21,7 @@ angular.module('angularDob')
 
 			return {
 				day: day,
-				month: month - 1, // JS Months goes from 0 to 11.
+				month: month,
 				year: year
 			};
 		};

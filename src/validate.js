@@ -42,15 +42,15 @@ angular.module('angularDob')
 				return false;
 			}
 
-			if (!(parseInt(month, 10) <= 12)) {
+			if (!(month <= 12)) {
 				return false;
 			}
 
-			dob = new Date(year, month, day);
+			dob = new Date(year, month - 1, day);
 
 			// Check that there is no overflow.
 			if (dob.getFullYear() != year
-				|| dob.getMonth() != month
+				|| dob.getMonth() != month - 1
 				|| dob.getDate() != day) {
 				return false;
 			}

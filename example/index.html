@@ -7,11 +7,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular.min.js"></script>-->
     <!-- Development -->
-    <!--<script src="../src/module.js"></script>-->
-    <!--<script src="../src/common.js"></script>-->
-    <!--<script src="../src/format.js"></script>-->
-    <!--<script src="../src/validate.js"></script>-->
-    <script src="../lib/angular-dob.js"></script>
+    <script src="../src/module.js"></script>
+    <script src="../src/common.js"></script>
+    <script src="../src/format.js"></script>
+    <script src="../src/validate.js"></script>
+    <!-- <script src="../lib/angular-dob.js"></script> -->
 
 
     <script>
@@ -41,12 +41,12 @@
                 <form name="myForm">
                     <div class="span3">
                         <label>Date of birth:</label>
-                        <input type="text" 
-                                class="input-block-level" 
-                                ng-model="number" 
-                                dob-validate-max-date="1986-10-08" 
-                                dob-validate-min-date="1900-01-01" 
-                                dob-format dob-validate 
+                        <input type="text"
+                                class="input-block-level"
+                                ng-model="number"
+                                dob-validate-max-date="1986-10-08"
+                                dob-validate-min-date="1900-01-01"
+                                dob-format dob-validate
                                 placeholder="mm / dd / yyyy"/>
                     </div>
                 </form>

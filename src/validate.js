@@ -55,7 +55,7 @@ angular.module('angularDob')
 				return false;
 			}
 
-			dob.setMonth(dob.getMonth() - 1);
+			// dob.setMonth(dob.getMonth() - 1);
 			//dob.setMonth(dob.getMonth() + 1, 1);
 
 			isValid = dob < minimumTime;

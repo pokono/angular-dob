@@ -16,7 +16,7 @@ angular.module('angularDob')
 			console.log('#######################');
 
 			if (typeof val === 'object') { // Newer angular.
-				obj = val;
+				obj = val; // Take original values.
 			} else {
 				obj = CommonDob.parseDob(val);
 			}
@@ -40,11 +40,6 @@ angular.module('angularDob')
 			if (!/^\d+$/.test(year)) {
 				return false;
 			}
-
-			// // Additional validation.
-			// if (!(month <= 12) || !(month > 0) || !(day > 0)) {
-			// 	return false;
-			// }
 
 			dob = new Date(year, month - 1, day);
 

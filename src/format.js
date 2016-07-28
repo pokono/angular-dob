@@ -54,20 +54,40 @@ angular.module('angularDob')
 			val = $target.val() + digit;
 			original = $target.val();
 
-			if (/^\d$/.test(val) && (val !== '0' && val !== '1')) {
-				e.preventDefault();
-				return $target.val("0" + val + " / ");
+			if (CommonDob.isDMY()) { //handle DD/MM/YYYY format
 
-			} else if (/^\d\d$/.test(val)) {
-				e.preventDefault();
-				return $target.val("" + val + " / ");
+				if (/^\d$/.test(val) && (val !== '0' && val !== '1' && val !== '2' && val !== '3')) {
+					e.preventDefault();
+					return $target.val("0" + val + " / ");
+				} else if (/^\d\d$/.test(val)) {
+					e.preventDefault();
+					return $target.val("" + val + " / ");
+				} else if (/^\d\d\s\/\s\d$/.test(val) && (digit !== '0' && digit !== '1')) {
+					e.preventDefault();
+					return $target.val("" + original + '0' + digit + " / ");
+				} else if (/^\d\d\s\/\s\d\d$/.test(val)) {
+					e.preventDefault();
+					return $target.val("" + val + " / ");
+				}
 
-			} else if (/^\d\d\s\/\s\d$/.test(val) && (digit !== '0' && digit !== '1' && digit !== '2' && digit !== '3')) {
-				e.preventDefault();
-				return $target.val("" + original + '0' + digit + " / ");
-			} else if (/^\d\d\s\/\s\d\d$/.test(val)) {
-				e.preventDefault();
-				return $target.val("" + val + " / ");
+			} else { //handle MM/DD/YYYY format
+
+				if (/^\d$/.test(val) && (val !== '0' && val !== '1')) {
+					e.preventDefault();
+					return $target.val("0" + val + " / ");
+
+				} else if (/^\d\d$/.test(val)) {
+					e.preventDefault();
+					return $target.val("" + val + " / ");
+
+				} else if (/^\d\d\s\/\s\d$/.test(val) && (digit !== '0' && digit !== '1' && digit !== '2' && digit !== '3')) {
+					e.preventDefault();
+					return $target.val("" + original + '0' + digit + " / ");
+				} else if (/^\d\d\s\/\s\d\d$/.test(val)) {
+					e.preventDefault();
+					return $target.val("" + val + " / ");
+				}
+
 			}
 		};
 
@@ -143,7 +163,12 @@ angular.module('angularDob')
 			if (value != null) {
 				var obj = CommonDob.parseDob(value);
 				var dob = new Date(obj.year, obj.month - 1, obj.day);
-				obj.text = $filter('date')(dob, 'MM/dd/yyyy');
+				if (CommonDob.isDMY()) {
+					var format = 'dd/MM/yyyy'
+				} else {
+					var format = 'MM/dd/yyyy'
+				}
+				obj.text = $filter('date')(dob, format);
 				return obj;
 			}
 			return null;
@@ -153,12 +178,20 @@ angular.module('angularDob')
 			if (value != null) {
 				var obj = CommonDob.parseDob(value);
 				var dob = new Date(obj.year, obj.month - 1, obj.day);
-				return $filter('date')(dob, 'MM / dd / yyyy');
+				if (CommonDob.isDMY()) {
+					var format = 'dd/MM/yyyy'
+				} else {
+					var format = 'MM/dd/yyyy'
+				}
+				return $filter('date')(dob, format);
 			}
 			return null;
 		};
 
-		return function(elem, ctrl) {
+		return function(elem, ctrl, attr) {
+			
+			CommonDob.setMode(attr.dobFormatMode);
+
 			elem.bind('keypress', _restrictDob);
 			elem.bind('keypress', _formatDob);
 			elem.bind('keypress', _formatForwardSlash);
@@ -176,7 +209,7 @@ angular.module('angularDob')
 			restrict: 'A',
 			require: 'ngModel',
 			link: function(scope, elem, attr, ctrl) {
-				_FormatDob(elem, ctrl);
+				_FormatDob(elem, ctrl, attr);
 			}
 		}
 	}]);

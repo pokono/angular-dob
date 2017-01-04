@@ -69,9 +69,7 @@ angular.module('angularDob')
 		};
 
 		return function(val, ctrl, scope, attr) {
-
 			// CommonDob.setMode(attr.dobFormatMode);
-			
 			return validateDob(val, attr);
 		}
 	}])

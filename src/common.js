@@ -29,7 +29,7 @@ angular.module('angularDob')
 			return this.mode == this.MODE_MDY;
 		};
 
-		// String "mm / dd / yyyy"
+		// String "mm / dd / yyyy".
 		common['parseDob'] = function(value) {
 			var day, month, year, _ref;
 

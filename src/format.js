@@ -54,8 +54,7 @@ angular.module('angularDob')
 			val = $target.val() + digit;
 			original = $target.val();
 
-			if (CommonDob.isDMY()) { //handle DD/MM/YYYY format
-
+			if (CommonDob.isDMY()) { // Handle DD/MM/YYYY format.
 				if (/^\d$/.test(val) && (val !== '0' && val !== '1' && val !== '2' && val !== '3')) {
 					e.preventDefault();
 					return $target.val("0" + val + " / ");
@@ -69,9 +68,7 @@ angular.module('angularDob')
 					e.preventDefault();
 					return $target.val("" + val + " / ");
 				}
-
-			} else { //handle MM/DD/YYYY format
-
+			} else { // Handle MM/DD/YYYY format.
 				if (/^\d$/.test(val) && (val !== '0' && val !== '1')) {
 					e.preventDefault();
 					return $target.val("0" + val + " / ");
@@ -87,7 +84,6 @@ angular.module('angularDob')
 					e.preventDefault();
 					return $target.val("" + val + " / ");
 				}
-
 			}
 		};
 
@@ -163,10 +159,11 @@ angular.module('angularDob')
 			if (value != null) {
 				var obj = CommonDob.parseDob(value);
 				var dob = new Date(obj.year, obj.month - 1, obj.day);
+				var format = '';
 				if (CommonDob.isDMY()) {
-					var format = 'dd/MM/yyyy'
+					format = 'dd/MM/yyyy';
 				} else {
-					var format = 'MM/dd/yyyy'
+					format = 'MM/dd/yyyy';
 				}
 				obj.text = $filter('date')(dob, format);
 				return obj;
@@ -178,10 +175,11 @@ angular.module('angularDob')
 			if (value != null) {
 				var obj = CommonDob.parseDob(value);
 				var dob = new Date(obj.year, obj.month - 1, obj.day);
+				var format = '';
 				if (CommonDob.isDMY()) {
-					var format = 'dd/MM/yyyy'
+					format = 'dd/MM/yyyy';
 				} else {
-					var format = 'MM/dd/yyyy'
+					format = 'MM/dd/yyyy';
 				}
 				return $filter('date')(dob, format);
 			}
@@ -189,7 +187,6 @@ angular.module('angularDob')
 		};
 
 		return function(elem, ctrl, attr) {
-			
 			CommonDob.setMode(attr.dobFormatMode);
 
 			elem.bind('keypress', _restrictDob);

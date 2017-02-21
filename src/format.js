@@ -174,7 +174,7 @@ angular.module('angularDob')
 		var _getFormattedDob = function(value) {
             if (value != null) {
                 var obj = null;
-                switch(typeof value) {
+                switch (typeof value) {
                     case 'string':
                         obj = CommonDob.parseDob(value);
                         break;

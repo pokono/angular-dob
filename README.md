@@ -48,6 +48,13 @@ Is used for formatting fields.
 	
 For formatting to work, the element must have an associated ng-model -value.
 
+#### Optional Parameters
+
+**Format Mode** - Date format mode (string). Default: mm/dd/yyyy
+```html
+	<input type="text" ng-model="blah" dob-format dob-format-mode="dd/mm/yyyy" />
+	<input type="text" ng-model="blah" dob-format dob-format-mode="mm/dd/yyyy" />
+```
 
 ## Example
 
